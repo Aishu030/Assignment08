@@ -3,57 +3,61 @@ namespace Assignment08
 //ASSIGNMENT 08
 //METHODS AND PARAMETERS IN C#
 {
-    class Salary
-    {
-        public double CalSalary(double wHour, double nWDays, double projectHandles = 1, double extras = 0)
+        public class Calc
         {
-            double salary = wHour * nWDays * 100 + projectHandles * 3000 + extras * 2000;
-            return salary;
-        }
-    }
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Salary obj = new Salary();
-
-            //*********************Salary Calculation System*****************
-            Console.WriteLine("Choose the type of employee :");
-            Console.WriteLine("type 1 below for HR");
-            Console.WriteLine("type 2 below for Admin");
-            Console.WriteLine("type 3 below for Software Developer");
-
-            int employeeType = int.Parse(Console.ReadLine());
-            Console.Write("Enter working hours: ");
-            double wHour = double.Parse(Console.ReadLine());
-            Console.Write("Enter number of working days: ");
-            double nWDays = double.Parse(Console.ReadLine());
-            double projectHandles = 0;
-            double extras = 0;
-
-            switch (employeeType)
+            public static int CalcSalary(int eType, int eWHours, int eWDays, int ProjectHandles, int Extras)
             {
-                case 1: //type 1 HR
-                    break;
-                case 2: //type 2 for admin
-                    Console.WriteLine("Enter the number of project handles:");
-                    projectHandles = double.Parse(Console.ReadLine());
-                    break;
-                case 3: //type 3 for software developer
-                    Console.WriteLine("Enter the number of project handles:");
-                    projectHandles = double.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter the value of extras:");
-                    extras = double.Parse(Console.ReadLine());
-                    break;
-                default:
-                    Console.WriteLine("Invalid employee type selected.");
-                    break;
-            }
+                int salary = 0;
 
-            double calculatedSalary = obj.CalSalary(wHour, nWDays, projectHandles, extras);
-            Console.WriteLine($"Monthly Salary: {calculatedSalary}");
-            Console.ReadKey();
+                switch (eType)
+                {
+                    case 1:
+                        salary = eWHours * eWDays * 100;
+                        break;
+                    case 2:
+                        salary = (eWHours * eWDays * 100) + (ProjectHandles * 3000);
+                        break;
+                    case 3:
+                        salary = (eWHours * eWDays * 100) + (   ProjectHandles * 3000) + (Extras * 2000);
+                        break;
+                    default:
+                        Console.WriteLine("Invalid employee Type!!!");
+                        break;
+                }
+                return salary;
+            }
+        }
+        internal class Program
+        {
+            static void Main(string[] args)
+            {
+                Console.WriteLine("Choose Employee type:");
+                Console.WriteLine("1.HR");
+                Console.WriteLine("2.Admin");
+                Console.WriteLine("3.Software Developer");
+                int eType = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("enter working hours");
+                int eHours = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("enter no of working days");
+                int eWDays = Convert.ToInt32(Console.ReadLine());
+
+                int ProjectHandels = 0;
+                int Extras = 0;
+                if (eType == 2 || eType == 3)
+                {
+                    Console.WriteLine("enter project handels");
+                    ProjectHandels = Convert.ToInt32(Console.ReadLine());
+
+                }
+                if (eType == 3)
+                {
+                    Console.WriteLine("enter extras");
+                    Extras = Convert.ToInt32(Console.ReadLine());
+                }
+
+                int salary = Calc.CalcSalary(eType, eHours, eWDays, ProjectHandels, Extras);
+                Console.WriteLine("mothly salary:" + salary);
+                Console.ReadKey();
+            }
         }
     }
-}
-
