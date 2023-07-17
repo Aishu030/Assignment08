@@ -24,16 +24,17 @@ namespace Assignment08
             Console.WriteLine("type 3 below for Software Developer");
 
             int employeeType = int.Parse(Console.ReadLine());
-
-            double wHour = 9;
-            double nWDays = 30;
+            Console.Write("Enter working hours: ");
+            double wHour = double.Parse(Console.ReadLine());
+            Console.Write("Enter number of working days: ");
+            double nWDays = double.Parse(Console.ReadLine());
             double projectHandles = 0;
             double extras = 0;
 
             switch (employeeType)
             {
                 case 1: //type 1 HR
-                       break;
+                    break;
                 case 2: //type 2 for admin
                     Console.WriteLine("Enter the number of project handles:");
                     projectHandles = double.Parse(Console.ReadLine());
@@ -55,3 +56,4 @@ namespace Assignment08
         }
     }
 }
+
